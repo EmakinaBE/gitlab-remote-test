@@ -5,7 +5,7 @@ dast:
   image: registry.gitlab.com/gitlab-org/security-products/zaproxy
   stage: testing
   variables:
-    website: "https://firststop.es"
+    website: "https://www.firststop.es"
   allow_failure: true
   script:
     - mkdir /zap/wrk/
