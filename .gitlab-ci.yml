@@ -1,18 +1,12 @@
-stages:
-  - testing
-
 dast:
   image: registry.gitlab.com/gitlab-org/security-products/zaproxy
-  stage: testing
-  variables:
-    website: "https://www.firststop.es"
   allow_failure: true
   script:
     - mkdir /zap/wrk/
-    - /zap/zap-baseline.py -J gl-dast-report.json -t $website || true
-    - cp /zap/wrk/gl-dast-report.json .
+    - /zap/zap-baseline.py -J dast-report.json -t $APP_URL || true
+    - cp /zap/wrk/dast-report.json .
   artifacts:
     reports:
-      dast: gl-dast-report.json
+      dast: dast-report.json
   only:
-    - develop
+    - schedules
